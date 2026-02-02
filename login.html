@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeaSaudi | Log In</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #cadbea;
+      --text: #133e86;
+      --glass: rgba(255,255,255,0.85);
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      background-image: url("media/BackgroundImg.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+      z-index: -1;
+    }
+
+    h1, h2, h3{
+      font-family: "Playfair Display", serif;
+      color: var(--text);
+      margin: 0;
+      font-weight: 400;
+    }
+
+    html, body{
+      cursor: url("media/anchor-cursor.png") 16 16, auto;
+    }
+
+    .noura-container{
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .noura-header-bar{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      background: var(--glass);
+      padding: 15px 30px;
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    }
+
+    .noura-welcome-text h3{
+      margin: 0;
+      font-weight: 400;
+      font-size: 1.05rem;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .noura-welcome-text span{
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .noura-btn{
+      background-color: rgba(19, 62, 134, 0.05);
+      color: #133e86;
+      padding: 10px 25px;
+      border-radius: 25px;
+      border: 1px solid #133e86;
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .noura-btn:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(19,62,134,0.18);
+    }
+
+    .noura-card{
+      background: var(--glass);
+      border-radius: 25px;
+      padding: 30px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+    }
+
+    .noura-card-header{
+      margin-bottom: 18px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed rgba(19,62,134,0.20);
+    }
+
+    .noura-card-header h2{
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .noura-note{
+      margin: 10px 0 0;
+      font-size: 0.95rem;
+      opacity: 0.8;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .noura-form{
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .noura-form-group{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label{
+      font-size: 1rem;
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+    }
+
+    input[type="email"],
+    input[type="password"]{
+      border: 1px solid rgba(19,62,134,0.35);
+      border-radius: 14px;
+      padding: 10px 12px;
+      outline: none;
+      background: rgba(255,255,255,0.75);
+      color: var(--text);
+      font-family: "Poppins", sans-serif;
+    }
+
+    .noura-submit-area{
+      margin-top: 6px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .noura-helper{
+      margin-top: 12px;
+      font-size: 0.95rem;
+      opacity: 0.9;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+    }
+
+    .noura-helper a{
+      color: var(--text);
+      text-decoration: underline;
+      font-weight: 700;
+      font-family: "Poppins", sans-serif;
+    }
+
+    @media (max-width: 850px){
+      .noura-header-bar{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noura-container">
+
+    <header class="noura-header-bar">
+      <div class="noura-welcome-text">
+        <h3>Welcome to <span>SeaSaudi</span></h3>
+      </div>
+      <a href="index.html" class="noura-btn">Back to Home</a>
+    </header>
+
+    <section class="noura-card">
+      <div class="noura-card-header">
+        <h2>Log In</h2>
+        <p class="noura-note"></p>
+      </div>
+
+      <!-- action will be set by JS depending on clicked button -->
+      <form class="noura-form" id="nouraLoginForm" method="GET" action="">
+        <div class="noura-form-group">
+          <label for="nouraLoginEmail">Email:</label>
+          <input id="nouraLoginEmail" type="email" name="email" placeholder="name@example.com" required>
+        </div>
+
+        <div class="noura-form-group">
+          <label for="nouraLoginPassword">Password:</label>
+          <input id="nouraLoginPassword" type="password" name="password" placeholder="••••••••" required>
+        </div>
+
+        <div class="noura-submit-area">
+          <button type="submit" class="noura-btn" id="nouraUserLoginBtn" data-target="user">Log In as User</button>
+          <button type="submit" class="noura-btn" id="nouraAdminLoginBtn" data-target="admin">Log In as Admin</button>
+        </div>
+
+        <div class="noura-helper">
+          New here? <a href="signup.html">Create an account</a>
+        </div>
+      </form>
+    </section>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      /* =========================
+         Noura - Login: Two redirect buttons
+         ========================= */
+      const loginForm = document.getElementById("nouraLoginForm");
+      const userBtn = document.getElementById("nouraUserLoginBtn");
+      const adminBtn = document.getElementById("nouraAdminLoginBtn");
+
+      if (loginForm && userBtn && adminBtn) {
+        userBtn.addEventListener("click", () => {
+          loginForm.action = "user.html";
+        });
+
+        adminBtn.addEventListener("click", () => {
+          loginForm.action = "admin.html";
+        });
+      }
+    });
+  </script>
+</body>
+</html>

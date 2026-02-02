@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SeaSaudi | Seafood Recipes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       Noura - Base / Reset
+       ========================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif; /* main font */
+      cursor: url("media/anchor-cursor.png") 16 16, auto; /* custom cursor */
+    }
+
+    /* Headings font */
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: #133e86;
+      margin: 0;
+    }
+
+    /* =========================
+       Noura - Background Video
+       ========================= */
+    #noura-bgVideo {
+      position: fixed;
+      inset: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* Overlay */
+    .noura-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 62, 138, 0.55);
+      z-index: -1;
+    }
+
+    /* =========================
+       Noura - Header
+       ========================= */
+    .noura-top-header {
+      position: absolute;
+      top: 20px;
+      left: 25px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .noura-header-logo {
+      width: 125px;
+    }
+
+    /* =========================
+       Noura - Home Container
+       ========================= */
+    .noura-home-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .noura-site-title {
+      font-size: 4.2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      color: white; /* keep white on video */
+      text-align: center;
+    }
+
+    /* =========================
+	   Noura - Buttons
+	   ========================= */
+	.noura-btn {
+	  text-decoration: none;
+	  transition: 0.3s ease;
+	  font-family: 'Playfair Display', serif;
+	}
+
+	/* Login Button */
+	.noura-login-btn {
+	  font-size: 1.05rem;
+	  padding: 14px 40px;
+	  border-radius: 30px;
+	}
+
+	/* Primary button */
+	.noura-primary {
+	  background-color: #0077B6;
+	  color: white;
+	}
+
+	.noura-primary:hover {
+	  background-color: #0096C7;
+	}
+
+    /* Signup text */
+    .noura-signup-text {
+      margin-top: 20px;
+	  margin-button: 20px;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .noura-signup-text a {
+      color: #90DBD0;
+      text-decoration: underline;
+      margin-left: 4px;
+    }
+
+    .noura-signup-text a:hover {
+      color: white;
+    }
+
+    /* =========================
+       Noura - Categories
+       ========================= */
+    .noura-categories {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .noura-category-card {
+      position: relative;
+	  margin-top: 20px;
+      width: 230px;
+      height: 290px;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+      transition: transform 0.35s ease;
+    }
+
+    .noura-category-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .noura-category-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .noura-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(2, 62, 138, 0.9),
+        rgba(2, 62, 138, 0.25)
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+      color: white;
+    }
+
+    .noura-card-overlay h3 {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      color: white; /* override heading blue inside cards */
+    }
+
+    .noura-card-overlay p {
+      font-size: 0.85rem;
+      line-height: 1.4;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .noura-category-card:hover .noura-card-overlay p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       Noura - Sound Button
+       ========================= */
+    .noura-sound-btn {
+      margin-top: 35px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 10px 22px;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .noura-sound-btn:hover {
+      background: rgba(255,255,255,0.35);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline id="noura-bgVideo">
+    <source src="media/BackgroundVid.Noura.mp4" type="video/mp4">
+  </video>
+
+  <!-- Overlay -->
+  <div class="noura-overlay"></div>
+
+  <!-- Header -->
+  <header class="noura-top-header">
+    <img src="media/SeaSaudiLogo.png" alt="SeaSaudi Logo" class="noura-header-logo" />
+  </header>
+
+  <!-- Main Content -->
+  <div class="noura-home-container">
+
+    <h1 class="noura-site-title">Sea Saudi</h1>
+
+    <!-- Auth Section -->
+    <div class="noura-auth-section">
+	<a href="login.html" class="noura-btn noura-primary noura-login-btn">Log In</a>
+
+      <p class="noura-signup-text">
+        New user?
+        <a href="signup.html">Sign up</a>
+      </p>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="noura-categories">
+
+      <div class="noura-category-card">
+        <img src="media/red-sea.webp" alt="Red Sea" />
+        <div class="noura-card-overlay">
+          <h3>Red Sea</h3>
+          <p>
+            Seafood recipes made with Red Sea fish,
+            inspired by traditional Hejazi cuisine.
+          </p>
+        </div>
+      </div>
+
+      <div class="noura-category-card">
+        <img src="media/arabian-gulf.jpg" alt="Arabian Gulf" />
+        <div class="noura-card-overlay">
+          <h3>Arabian Gulf</h3>
+          <p>
+            Seafood recipes using Arabian Gulf fish,
+            prepared in authentic Eastern cuisine styles.
+          </p>
+        </div>
+      </div>
+
+      <div class="noura-category-card">
+        <img src="media/international.jpg" alt="International" />
+        <div class="noura-card-overlay">
+          <h3>International</h3>
+          <p>
+            Global seafood recipes from different cultures,
+            not tied to a specific region.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sound Button -->
+    <button id="noura-soundToggle" class="noura-sound-btn">🔊 Sound On</button>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      /* =========================
+         Noura - Home Page Sound Toggle
+         ========================= */
+      const video = document.getElementById("noura-bgVideo");
+      const soundBtn = document.getElementById("noura-soundToggle");
+
+      if (video && soundBtn) {
+        let isMuted = true;
+
+        soundBtn.addEventListener("click", () => {
+          if (isMuted) {
+            video.muted = false;
+            video.volume = 0.4;
+            soundBtn.textContent = "🔈 Sound Off";
+          } else {
+            video.muted = true;
+            soundBtn.textContent = "🔊 Sound On";
+          }
+          isMuted = !isMuted;
+        });
+      }
+    });
+  </script>
+</body>
+</html>
