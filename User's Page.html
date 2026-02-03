@@ -19,7 +19,7 @@
             position: relative;
         }
 
-        /* Consistent Background Pattern */
+        
         body::before {
             content: "";
             position: fixed;
@@ -27,7 +27,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("media/BackgroundImg.jpg");
+            background-image: url('C:/Users/alqre/OneDrive/Desktop/WEB2PROJECT/pic.jpg');
             background-size: cover;
             background-position: center;
             opacity: 0.25; 
@@ -143,7 +143,7 @@
 
         /* Buttons */
         .reem-btn {
-            background-color: rgba(19, 62, 134, 0.05);
+            background-color: #FFFFFF;
             color: #133e86;
             padding: 10px 25px;
             border-radius: 25px;
@@ -161,9 +161,10 @@
         .reem-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(19, 62, 134, 0.2);
+            background-color: #fff;
         }
 
-        /* Card Style */
+        /* Card  */
         .reem-card {
             background: rgba(255, 255, 255, 0.85);
             border-radius: 25px;
@@ -186,7 +187,7 @@
             gap: 10px;
         }
 
-        /* Filter Controls */
+        /* Filter  */
         .reem-filter-area {
             display: flex;
             align-items: center;
@@ -199,12 +200,12 @@
             border-radius: 25px;
             border: 1px solid #133e86;
             font-family: 'Poppins', sans-serif;
-			background-color: rgba(19, 62, 134, 0.05);
+            background: white;
             color: #133e86;
             outline: none;
         }
 
-        /* Table Styling */
+        /* Tables */
         .reem-table {
             width: 100%;
             border-collapse: collapse;
@@ -276,12 +277,6 @@
                 overflow-x: auto;
             }
         }
-		
-		/* Custom Cursor */
-		html, body {
-			cursor: url("media/anchor-cursor.png") 16 16, auto;
-		}
-
     </style>
 </head>
 <body>
@@ -298,7 +293,7 @@
 
         <!-- Profile Section -->
         <section class="reem-profile-hero">
-            <img src="C:\Users\alqre\OneDrive\Desktop\WEB2PROJECT\Profile.webp" alt="Reem Al-Said" class="reem-profile-image">
+            <img src="image/User3.jpg" alt="Reem Saeed" class="reem-profile-image">
             
             <div class="reem-profile-info">
                 <h1>Reem Saeed</h1>
@@ -329,9 +324,9 @@
                 <div class="reem-filter-area">
                     <select class="reem-dropdown">
                         <option value="all">All Categories</option>
-                        <option value="Red Sea">Red Sea</option>
-                        <option value="Arabic gulf">Arabic gulf </option>
-                        <option value="International">International</option>
+                        <option value="Red Sea">Red Sea Coast </option>
+                        <option value="Arabic gulf">Arabian Gulf Coast </option>
+                        <option value="International">International Seafood </option>
                     </select>
                     <button class="reem-btn" style="padding: 8px 18px; font-size: 0.8rem;">Filter</button>
                 </div>
@@ -349,28 +344,28 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><a href="view-recipe.html" class="reem-link">Shrimp Kabsa</a></td>
-                        <td><img src="https://images.unsplash.com/photo-1510627489930-0c1b0ba80086?auto=format&fit=crop&w=100&h=100" class="reem-thumbnail" alt="Shrimp Kabsa"></td>
+                        <td><a href="view-recipe.html" class="reem-link">Grilled Salmon</a></td>
+                        <td><img src="image\Recipe.jpg" class="reem-thumbnail" alt="Grilled Salmon"></td>
                         <td>
                             <div class="reem-user-badge">
-                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=50&h=50" class="reem-avatar-sm" alt="Ali M.">
-                                <span>Feras Sami</span>
+                                <img src="image\User1.jpg"class="reem-avatar-sm" alt="Nouf Abdullah">
+                                <span>Nouf Abdullah</span>
                             </div>
                         </td>
                         <td><strong>430</strong></td>
-                        <td>Red Sea </td>
+                        <td>Red Sea Coast </td>
                     </tr>
                     <tr>
-                        <td><a href="view-recipe.html" class="reem-link">Fish</a></td>
-                        <td><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=100&h=100" class="reem-thumbnail" alt="Fish"></td>
+                        <td><a href="view-recipe.html" class="reem-link">Shrimp Machboos</a></td>
+                        <td><img src="image\Recipe2.jpg" class="reem-thumbnail" alt="Shrimp Machboos"></td>
                         <td>
                             <div class="reem-user-badge">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=50&h=50" class="reem-avatar-sm" alt="Reem Al-Said">
-                                <span>Deem Ahmed</span>
+                                <img src="image\User2.jpg" class="reem-avatar-sm" alt="Saqr Al-hamed">
+                                <span>Saqr Al-hamed</span>
                             </div>
                         </td>
                         <td><strong>215</strong></td>
-                        <td>Arabic gulf </td>
+                        <td>Arabian gulf Coast</td>
                     </tr>
                 </tbody>
             </table>
@@ -392,8 +387,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><a href="view-recipe.html" class="reem-link">Shrimp</a></td>
-                        <td><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=100&h=100" class="reem-thumbnail" alt="Shrimp"></td>
+                        <td><a href="view-recipe.html" class="reem-link">Shrimp Machboos</a></td>
+                        <td><img src="image\Recipe2.jpg"  class="reem-thumbnail" alt="Shrimp Machboos"></td>
                         <td><a href="#" class="reem-text-danger">Remove</a></td>
                     </tr>
                 </tbody>
@@ -404,4 +399,5 @@
 
 </body>
 </html>
+
 
