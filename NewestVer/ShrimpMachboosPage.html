@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Recipe - Shrimp Machboos</title>
+   
+<!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+   
+<style>
+    :root {
+      --sadeem-primary: #133e86;
+      --sadeem-accent: #fffff0;
+      --sadeem-bg: #cadbea;
+      --sadeem-glass: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Base */
+    .sadeem-body {
+      background-color: var(--sadeem-bg);
+      color: var(--sadeem-primary);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Consistent Background Pattern (project path) */
+    .sadeem-body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('media/BackgroundImg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.25;
+      z-index: -1;
+    }
+
+    /* Project heading system */
+    .sadeem-body h1,
+    .sadeem-body h2,
+    .sadeem-body h3,
+    .sadeem-body h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--sadeem-primary);
+      font-weight: 400;
+    }
+
+    .sadeem-main-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sadeem-action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      background: var(--sadeem-glass);
+      padding: 15px 25px;
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    .sadeem-btn-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    /* Buttons - match your agreed palette (without changing content) */
+    .sadeem-btn {
+      background-color: rgba(19, 62, 134, 0.05);
+      color: #133e86;
+      padding: 10px 25px;
+      border-radius: 25px;
+      border: 1px solid #133e86;
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sadeem-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(19, 62, 134, 0.2);
+    }
+
+    .sadeem-hero-section {
+      display: flex;
+      gap: 30px;
+      background: var(--sadeem-glass);
+      padding: 30px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      margin-bottom: 30px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+      align-items: flex-start;
+    }
+
+    .sadeem-image-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      width: 300px;
+      height: 350px;
+      flex-shrink: 0;
+    }
+
+    .sadeem-recipe-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sadeem-recipe-info { flex-grow: 1; }
+
+    .sadeem-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--sadeem-primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.7em;
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Title now uses project heading font */
+    .sadeem-recipe-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3em;
+      margin: 0 0 10px 0;
+      line-height: 1.1;
+      font-weight: 400;
+    }
+
+    .sadeem-creator-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 15px 0;
+      padding: 8px 15px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 50px;
+      width: fit-content;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .sadeem-creator-img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--sadeem-primary);
+    }
+
+    .sadeem-mini-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--sadeem-primary);
+      object-fit: cover;
+    }
+
+    .sadeem-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .sadeem-stat-item {
+      text-align: center;
+      padding: 12px;
+      background: #fff;
+      border-radius: 15px;
+      border-bottom: 4px solid var(--sadeem-primary);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .sadeem-stat-val {
+      display: block;
+      font-weight: 600;
+      font-size: 1.1em;
+    }
+
+    .sadeem-stat-label {
+      font-size: 0.65em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .sadeem-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 30px;
+    }
+
+    .sadeem-card {
+      background: var(--sadeem-glass);
+      padding: 30px;
+      border-radius: 25px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+    }
+
+    .sadeem-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 400;
+    }
+
+    .sadeem-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .sadeem-list li {
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(19, 62, 134, 0.2);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9em;
+    }
+
+    .sadeem-step {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .sadeem-step-num {
+      background: var(--sadeem-primary);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: bold;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .sadeem-comments-section {
+      margin-top: 30px;
+      background: var(--sadeem-glass);
+      padding: 30px;
+      border-radius: 30px;
+    }
+
+    .sadeem-comment-input-area {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .sadeem-textarea {
+      width: 100%;
+      border: 1px solid rgba(19,62,134,0.35);
+      border-radius: 15px;
+      padding: 15px;
+      font-family: 'Poppins', sans-serif;
+      resize: none;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+      outline: none;
+      color: var(--sadeem-primary);
+      background: rgba(255,255,255,0.85);
+    }
+
+    .sadeem-comment-card {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      display: flex;
+      gap: 15px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    @media (max-width: 850px) {
+      .sadeem-hero-section { flex-direction: column; align-items: center; }
+      .sadeem-image-wrapper { width: 100%; height: 250px; }
+      .sadeem-content-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Custom Cursor */
+    html, body {
+      cursor: url("media/anchor-cursor.png") 16 16, auto;
+    }
+  </style>
+</head>
+<body class="sadeem-body">
+
+    <main class="sadeem-main-container">
+       
+        <div class="sadeem-action-bar">
+            <a href="index.html" style="font-family:'Abril Fatface'; font-size: 1.1em; color: var(--sadeem-primary); text-decoration: none;">&larr; Discover Recipes</a>
+            <div class="sadeem-btn-group">
+                <button class="sadeem-btn">Favorate</button>
+                <button class="sadeem-btn">Like</button>
+                <button class="sadeem-btn">Report</button>
+            </div>
+        </div>
+
+        <section class="sadeem-hero-section">
+            <div class="sadeem-image-wrapper">
+                <img src="media/Shrimp-Machboos.jpg" alt="Shrimp Machboos" class="sadeem-recipe-img">
+                <span class="sadeem-badge">TOP RATED</span>
+            </div>
+           
+            <div class="sadeem-recipe-info">
+                <h1 class="sadeem-recipe-title">Shrimp Machboos</h1>
+               
+                <div class="sadeem-creator-card">
+                    <img src="media/User2.jpg" alt="Chef Saqr" class="sadeem-creator-img">
+                    <div>
+                        <span style="display:block; font-size: 0.75em; opacity: 0.8;">Masterfully created by</span>
+                        <strong>Chef Saqr Al-Hamed</strong>
+                    </div>
+                </div>
+
+                <div class="sadeem-details">
+                    <div style="margin-bottom: 15px;">
+                        <h4 style="font-family: 'Abril Fatface'; margin: 0; color: var(--sadeem-primary); font-size: 1.1em;">Category</h4>
+                        <span style="font-size: 0.9em; background: rgba(19, 62, 134, 0.1); padding: 2px 10px; border-radius: 10px;">Arabian Gulf Coast Cuisine</span>
+                    </div>
+                    
+                    <div>
+                        <h4 style="font-family: 'Abril Fatface'; margin: 0; color: var(--sadeem-primary); font-size: 1.1em;">Description</h4>
+                        <p style="font-size: 0.9em; line-height: 1.6; margin-top: 5px;">
+                            Shrimp Machboos is a traditional Gulf seafood dish made with shrimp and aromatic spiced rice. It is widely popular in the Eastern Province of Saudi Arabia and represents the culinary identity of the Arabian Gulf coast.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="sadeem-stats-grid">
+                    <div class="sadeem-stat-item">
+                        <span class="sadeem-stat-val">45m</span>
+                        <span class="sadeem-stat-label">Total Time</span>
+                    </div>
+                    <div class="sadeem-stat-item">
+                        <span class="sadeem-stat-val">Medium</span>
+                        <span class="sadeem-stat-label">Level</span>
+                    </div>
+                    <div class="sadeem-stat-item">
+                        <span class="sadeem-stat-val">850</span>
+                        <span class="sadeem-stat-label">Cals</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="sadeem-content-grid">
+            <section class="sadeem-card">
+                <h3 class="sadeem-card-title">Ingredients</h3>
+                <ul class="sadeem-list">
+                    <li><span>Shrimp (Cleaned)</span> <span>500 g</span></li>
+                    <li><span>Basmati Rice</span> <span>2 Cups</span></li>
+                    <li><span>Onion (Chopped)</span> <span>1 Med</span></li>
+                    <li><span>Garlic (Minced)</span> <span>3 Cloves</span></li>
+                    <li><span>Tomato Paste</span> <span>1 tbsp</span></li>
+                    <li><span>Turmeric & Cumin</span> <span>1 tsp each</span></li>
+                    <li><span>Cardamom & Pepper</span> <span>1 tsp each</span></li>
+                    <li><span>Shrimp Stock/Water</span> <span>3 Cups</span></li>
+                </ul>
+            </section>
+
+            <section class="sadeem-card">
+                <h3 class="sadeem-card-title">Instructions</h3>
+                <div class="sadeem-step">
+                    <div class="sadeem-step-num">1</div>
+                    <p>Wash and soak the rice for 20 minutes.</p>
+                </div>
+                <div class="sadeem-step">
+                    <div class="sadeem-step-num">2</div>
+                    <p>Heat oil in a pot and sauté onion and garlic until fragrant.</p>
+                </div>
+                <div class="sadeem-step">
+                    <div class="sadeem-step-num">3</div>
+                    <p>Add tomatoes, tomato paste, and spices, then cook for a few minutes.</p>
+                </div>
+                <div class="sadeem-step">
+                    <div class="sadeem-step-num">4</div>
+                    <p>Add shrimp and cook briefly until they turn pink.</p>
+                </div>
+                <div class="sadeem-step">
+                    <div class="sadeem-step-num">5</div>
+                    <p>Add shrimp stock and bring to a boil.</p>
+                </div>
+                <div class="sadeem-step">
+                    <div class="sadeem-step-num">6</div>
+                    <p>Add rice and cook until tender and the liquid is absorbed.</p>
+                </div>
+            </section>
+        </div>
+
+        <!--<section class="sadeem-card" style="margin-top: 30px; text-align: center;">
+            <h3 class="sadeem-card-title" style="justify-content: center;"> Tutorial</h3>
+            <div style="background: rgba(19, 62, 134, 0.05); height: 180px; border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <p style="margin-bottom: 15px;">Watch the traditional Machboos technique</p>
+                <a href="https://youtube.com" target="_blank" class="sadeem-btn">Play Video</a>
+            </div>
+        </section>-->
+
+        <section class="sadeem-comments-section">
+            <h3 class="sadeem-card-title"> Feedbacks</h3>
+            <div class="sadeem-comment-input-area">
+                <textarea class="sadeem-textarea" rows="3" placeholder="How did your Machboos turn out?"></textarea>
+                <div style="text-align: right;">
+                    <button class="sadeem-btn">Post Feedback</button>
+                </div>
+            </div>
+
+            <div class="sadeem-comment-list">
+                <div class="sadeem-comment-card">
+                    <img src="media/user1-photo.jpg" alt="" class="sadeem-mini-img">
+                    <div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <strong>Remas Ahmad</strong>
+                            <span style="font-size: 0.7em; opacity: 0.5;">3h ago</span>
+                        </div>
+                        <p style="margin: 5px 0 0 0; font-size: 0.9em;">This dish tastes amazing and reminds me of Gulf flavors! </p>
+                    </div>
+                </div>
+
+                <div class="sadeem-comment-card">
+                    <img src="media/user1-photo.jpg" alt="" class="sadeem-mini-img">
+                    <div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <strong>Maha Al-Khaldi</strong>
+                            <span style="font-size: 0.7em; opacity: 0.5;">6h ago</span>
+                        </div>
+                        <p style="margin: 5px 0 0 0; font-size: 0.9em;">The best shrimp machboos recipe ever. Very authentic and the steps are clear.</p>
+                    </div>
+                </div>
+
+                <div class="sadeem-comment-card">
+                    <img src="media/user1-photo.jpg" alt="" class="sadeem-mini-img">
+                    <div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <strong>Sultan Mohammad</strong>
+                            <span style="font-size: 0.7em; opacity: 0.5;">Yesterday</span>
+                        </div>
+                        <p style="margin: 5px 0 0 0; font-size: 0.9em;"> Perfect recipe for seafood lovers. </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
+
+

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #cadbea;
+            color: #133e86;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('media/BackgroundImg.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25; 
+            z-index: -1;
+        }
+
+        .reem-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+   
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #133e86;
+            margin: 0;
+        }
+
+     
+        .reem-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .reem-welcome-text h3 {
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+        }
+
+        .reem-welcome-text span {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+     
+        .reem-profile-hero {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 30px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 32px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+        }
+
+        .reem-profile-image {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #133e86;
+            box-shadow: 0 10px 20px rgba(19, 62, 134, 0.2);
+            flex-shrink: 0;
+            margin-bottom: 20px;
+        }
+
+        .reem-profile-info h1 {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .reem-profile-meta {
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .reem-stats-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .reem-stat-box {
+            background: #fff;
+            padding: 12px 25px;
+            border-radius: 15px;
+            text-align: center;
+            border-bottom: 4px solid #133e86;
+            min-width: 90px;
+        }
+
+        .reem-stat-number {
+            display: block;
+            font-weight: 600;
+            font-size: 1.6rem;
+        }
+
+        .reem-stat-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Buttons */
+        .reem-btn {
+            background-color: rgba(19, 62, 134, 0.05);
+            color: #133e86;
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: 1px solid #133e86;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reem-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(19, 62, 134, 0.2);
+            background-color: #fff;
+        }
+
+        /* Card  */
+        .reem-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 25px;
+            padding: 30px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            margin-bottom: 30px;
+        }
+
+        .reem-card-header {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed rgba(19, 62, 134, 0.2);
+        }
+
+        .reem-card-header h2 {
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Filter  */
+        .reem-filter-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .reem-dropdown {
+            padding: 8px 15px;
+            border-radius: 25px;
+            border: 1px solid #133e86;
+            font-family: 'Poppins', sans-serif;
+            background-color: rgba(19, 62, 134, 0.05);
+            color: #133e86;
+            outline: none;
+        }
+
+        /* Tables */
+        .reem-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .reem-table th {
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 10px;
+            border-bottom: 2px solid #133e86;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .reem-table td {
+            padding: 15px 10px;
+            border-bottom: 1px solid rgba(19, 62, 134, 0.1);
+            font-size: 0.95rem;
+            vertical-align: middle;
+        }
+
+        .reem-thumbnail {
+            width: 65px;
+            height: 65px;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .reem-user-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 5px 0;
+        }
+
+        .reem-avatar-sm {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid #133e86;
+        }
+
+        .reem-link {
+            color: #133e86;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .reem-link:hover {
+            opacity: 0.8;
+        }
+
+        .reem-text-danger {
+            color: #dc2626;
+            font-family: 'Playfair Display', serif;
+            text-decoration: none;
+        }
+
+        @media (max-width: 850px) {
+            .reem-profile-hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .reem-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="reem-container">
+        
+        <!-- Header Bar -->
+        <header class="reem-header-bar">
+            <div class="reem-welcome-text">
+                <h3>Welcome back, <span>Reem</span></h3>
+            </div>
+            <a href="index.html" class="reem-btn">Sign Out</a>
+        </header>
+
+        <!-- Profile Section -->
+        <section class="reem-profile-hero">
+            <img src="media/User3.jpg" alt="Reem Saeed" class="reem-profile-image">
+            
+            <div class="reem-profile-info">
+                <h1>Reem Saeed</h1>
+                <div class="reem-profile-meta">
+                    <strong>Email:</strong> cookwithreem@oceankitchen.com<br>
+                </div>
+                
+                <div class="reem-stats-row">
+                    <div class="reem-stat-box">
+                        <span class="reem-stat-number">2</span>
+                        <span class="reem-stat-label">Recipes</span>
+                    </div>
+                    <div class="reem-stat-box">
+                        <span class="reem-stat-number">645</span>
+                        <span class="reem-stat-label">Likes</span>
+                    </div>
+                    <a href="MyRecipesPage.html" class="reem-btn">View My Recipes &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recipes Table Card -->
+        <div class="reem-card">
+            <div class="reem-card-header">
+                <h2>All Available Recipes</h2>
+                
+                <div class="reem-filter-area">
+                    <select class="reem-dropdown">
+                        <option value="all">All Categories</option>
+                        <option value="Red Sea">Red Sea Coast </option>
+                        <option value="Arabic gulf">Arabian Gulf Coast </option>
+                        <option value="International">International Seafood </option>
+                    </select>
+                    <button class="reem-btn" style="padding: 8px 18px; font-size: 0.8rem;">Filter</button>
+                </div>
+            </div>
+
+            <table class="reem-table">
+                <thead>
+                    <tr>
+                        <th>Recipe Name</th>
+                        <th>Recipe Photo</th>
+                        <th>Recipe Creator</th>
+                        <th>Total Likes</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="GrilledSalmonPage.html" class="reem-link">Grilled Salmon</a></td>
+                        <td><img src="media/grilled-salmon.jpg" class="reem-thumbnail" alt="Grilled Salmon"></td>
+                        <td>
+                            <div class="reem-user-badge">
+                                <img src="media/User1.jpg"class="reem-avatar-sm" alt="Nouf Abdullah">
+                                <span>Nouf Abdullah</span>
+                            </div>
+                        </td>
+                        <td><strong>430</strong></td>
+                        <td>Red Sea Coast </td>
+                    </tr>
+                    <tr>
+                        <td><a href="SayadiahPage.html" class="reem-link">Sayadiah Fish</a></td>
+                        <td><img src="media/sayadiyah-fish.jpg" class="reem-thumbnail" alt="Sayadiah Fish"></td>
+                        <td>
+                            <div class="reem-user-badge">
+                                <img src="media/User1.jpg" class="reem-avatar-sm" alt="Saqr Al-hamed">
+                                <span>Sarah Saleh</span>
+                            </div>
+                        </td>
+                        <td><strong>215</strong></td>
+                        <td>Arabian gulf Coast</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Favourites Table Card -->
+        <div class="reem-card">
+            <div class="reem-card-header">
+                <h2>My Favorite Recipe</h2>
+            </div>
+            
+            <table class="reem-table">
+                <thead>
+                    <tr>
+                        <th>Recipe Name</th>
+                        <th>Recipe Photo</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="SayadiahPage.html" class="reem-link">Sayadiah Fish</a></td>
+                        <td><img src="media/sayadiyah-fish.jpg"  class="reem-thumbnail" alt="Sayadiah Fish"></td>
+                        <td><a href="#" class="reem-text-danger">Remove</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+
+

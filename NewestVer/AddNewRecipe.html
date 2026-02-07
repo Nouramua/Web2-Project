@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SeaSaudi | Add New Recipe</title>
+
+  <!-- Project fonts (same as your edited page) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #cadbea;
+      --text: #133e86;
+      --glass: rgba(255,255,255,0.85);
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      position: relative;
+      cursor: url("media/anchor-cursor.png") 16 16, auto;
+    }
+
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      background-image: url("media/BackgroundImg.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+      z-index: -1;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4{
+      font-family: "Playfair Display", serif;
+      color: var(--text);
+      margin: 0;
+      font-weight: 400;
+    }
+
+    /* ===== Layout like your edited page ===== */
+    .Alanoud-AddRecipe-Container{
+      max-width: 1000px;   /* match your edited container */
+      margin: 0 auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .Alanoud-AddRecipe-HeaderBar{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      background: var(--glass);
+      padding: 15px 30px;
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .Alanoud-AddRecipe-HeaderBar h3{
+      margin: 0;
+      font-weight: 400;
+      font-size: 1.05rem;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .Alanoud-AddRecipe-HeaderBar h3 span{
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ===== Buttons: same vibe as your edited page ===== */
+    .Alanoud-btn{
+      background-color: rgba(19, 62, 134, 0.05);
+      color: #133e86;
+      padding: 10px 25px;
+      border-radius: 25px;
+      border: 1px solid #133e86;
+      cursor: pointer;
+      font-family: "Playfair Display", serif;
+      font-size: 0.9em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .Alanoud-btn:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(19,62,134,0.18);
+    }
+
+    .Alanoud-large-submit{
+      padding: 10px 25px; /* keep same size system (no giant) */
+      font-size: 0.9em;
+    }
+
+    /* ===== Card ===== */
+    .Alanoud-AddRecipe-Card{
+      background: var(--glass);
+      border-radius: 25px;
+      padding: 30px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+    }
+
+    .Alanoud-AddRecipe-Card-header{
+      margin-bottom: 18px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed rgba(19,62,134,0.20);
+      text-align: center;
+    }
+
+    .Alanoud-AddRecipe-Card-header h2{
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700; /* same as your edited page */
+      font-family: "Playfair Display", serif;
+    }
+
+    /* ===== Form ===== */
+    .Alanoud-AddRecipe-Form{
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* match your label system */
+    .Alanoud-AddRecipe-Form label strong{
+      font-size: 1.15rem;
+      font-weight: 600;
+      font-family: "Playfair Display", serif;
+    }
+
+    .AlanoudAdd-inline-row{
+	  display: grid;
+	  grid-template-columns: 160px 1fr;
+	  gap: 12px;
+	  align-items: center;
+	}
+
+    .AlanoudAdd-inline-row label{
+      min-width: 110px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      font-family: "Playfair Display", serif;
+    }
+
+    input[type="text"],
+    input[type="url"],
+    textarea,
+    select{
+      border: 1px solid rgba(19,62,134,0.35);
+      border-radius: 14px;
+      padding: 10px 12px;
+      outline: none;
+      background: rgba(255,255,255,0.75);
+      color: var(--text);
+      font-family: "Poppins", sans-serif;
+	  width: 100%;
+	  min-width: 220px;
+    }
+
+    textarea{
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    /* sections like your page */
+    .AlanoudAdd-dynamic-section{
+      margin-top: 8px;
+      padding-top: 0;
+    }
+
+    /* Make the rows look like your edited style blocks */
+    .Alanoud-row{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(19,62,134,0.15);
+      border-radius: 18px;
+      padding: 12px 14px;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* Submit area */
+    .Alanoud-submit-area{
+      margin-top: 6px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 850px){
+      .Alanoud-AddRecipe-HeaderBar{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+	  .AlanoudAdd-inline-row{
+		grid-template-columns: 1fr;
+		align-items: start;
+	  }
+      .AlanoudAdd-inline-row label{
+        min-width: auto;
+      }
+	  .Alanoud-row input{
+		min-width: 180px;
+	  }
+	  input[type="text"],
+	  input[type="url"],
+	  textarea,
+	  select{
+		min-width: 0;
+	  }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="Alanoud-AddRecipe-Container">
+
+    <header class="Alanoud-AddRecipe-HeaderBar">
+      <h3>Add new recipe in <span>SeaSaudi</span></h3>
+      <a href="MyRecipesPage.html" class="Alanoud-btn">Back to My Recipes</a>
+    </header>
+
+    <section class="Alanoud-AddRecipe-Card">
+      <div class="Alanoud-AddRecipe-Card-header">
+        <h2>Add New Recipe</h2>
+      </div>
+
+      <form id="recipeForm" class="Alanoud-AddRecipe-Form" action="MyRecipesPage.html" method="GET">
+        <div class="AlanoudAdd-inline-row">
+          <label>Name:</label>
+          <input type="text" name="recipeName" required>
+        </div>
+
+        <div class="AlanoudAdd-inline-row">
+          <label>Category:</label>
+          <select name="category" style="width: 200px;" required>
+            <option value="" selected>Select</option>
+            <option value="redSea">Red Sea</option>
+            <option value="ArabianGulf">Arabian Gulf</option>
+            <option value="international">International</option>
+          </select>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label><strong>Description:</strong></label>
+          <textarea name="description" required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 18px;">
+          <div>
+            <label><strong>Upload Recipe Photo:</strong></label><br><br>
+            <input type="file" name="photo" accept="image/*" required>
+          </div>
+        </div>
+
+        <div class="AlanoudAdd-dynamic-section" id="ingredients-container">
+          <label><strong>Ingredients:</strong></label>
+
+          <div class="Alanoud-row">
+            Ingredient 1: Name:
+            <input type="text" name="ing_name[]" style="flex: 2; min-width: 220px;" required>
+            Quantity:
+            <input type="text" name="ing_qty[]" style="flex: 1; min-width: 140px;" required>
+          </div>
+
+          <button type="button" class="Alanoud-btn" id="addIngredientBtn" style="font-size: 0.9rem;">+ Add another ingredient</button>
+        </div>
+
+        <div class="AlanoudAdd-dynamic-section" id="instructions-container">
+          <label><strong>Instructions:</strong></label>
+
+          <div class="Alanoud-row">
+            Step 1:
+            <input type="text" name="steps[]" required>
+          </div>
+
+          <button type="button" class="Alanoud-btn" id="addStepBtn" style="font-size: 0.9rem;">+ Add another step</button>
+        </div>
+
+        <div class="AlanoudAdd-dynamic-section">
+          <label><strong>Video or URL:</strong></label>
+          <input type="file" name="videoFile" accept="video/*">
+
+          <div class="AlanoudAdd-inline-row" style="margin-top: 15px;">
+            <label>Video URL:</label>
+            <input type="url" name="videoURL" placeholder="https://youtube.com/...">
+          </div>
+        </div>
+
+        <div class="Alanoud-submit-area">
+        <button type="submit" class="Alanoud-btn Alanoud-large-submit">Add Recipe</button>
+        </div>
+      </form>
+
+    </section>
+  </div>
+
+  <script>
+    // Keeping your existing functional script (with safe guards)
+    let ingredientCount = 1;
+    let stepCount = 1;
+
+    const addIngredientBtn = document.getElementById('addIngredientBtn');
+    const addStepBtn = document.getElementById('addStepBtn');
+    const recipeForm = document.getElementById('recipeForm');
+
+    if (addIngredientBtn) {
+      addIngredientBtn.addEventListener('click', function() {
+        ingredientCount++;
+        const container = document.getElementById('ingredients-container');
+        if (!container) return;
+
+        const div = document.createElement('div');
+        div.className = 'Alanoud-row';
+        div.innerHTML = `
+          Ingredient ${ingredientCount}: Name:
+          <input type="text" name="ing_name[]" style="flex: 2; min-width: 220px;" required>
+          Quantity:
+          <input type="text" name="ing_qty[]" style="flex: 1; min-width: 140px;" required>
+        `;
+        container.insertBefore(div, this);
+      });
+    }
+
+    if (addStepBtn) {
+      addStepBtn.addEventListener('click', function() {
+        stepCount++;
+        const container = document.getElementById('instructions-container');
+        if (!container) return;
+
+        const div = document.createElement('div');
+        div.className = 'Alanoud-row';
+        div.innerHTML = `Step ${stepCount}: <input type="text" name="steps[]" required>`;
+        container.insertBefore(div, this);
+      });
+    }
+  </script>
+
+</body>
+</html>

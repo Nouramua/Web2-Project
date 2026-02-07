@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Recipes | SeaSaudi</title>
+
+<!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+
+<style>
+
+
+body{
+  background-color: #cadbea;
+  color: #133e86;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+
+
+  /* your cursor */
+  cursor: url("media/cursor.png") 16 16, auto;
+}
+
+
+
+
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("media/BackgroundImg.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.20; /* ✅ change this to 0.10 / 0.25 etc */
+  z-index: -1;
+}
+
+
+a{
+  cursor: url("media/cursor.png") 16 16, pointer;
+}
+
+
+
+
+.dan-container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+
+h1, h2, h3{
+  font-family: 'Playfair Display', serif;
+  color: #133e86;
+  margin: 0;
+}
+
+
+/* Header Bar pill */
+.dan-header-bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  background: rgba(255,255,255,0.85);
+  padding: 14px 22px;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+
+.dan-header-left{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+
+.dan-logo{
+  height: 60px;  /* bigger logo */
+  width: auto;
+}
+
+
+.dan-welcome-text h3{
+  font-size: 1.05rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+
+.dan-welcome-text span{
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+
+.dan-header-actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+/* Buttons (same style) */
+.dan-btn{
+  background-color: rgba(19, 62, 134, 0.05);
+  color: #133e86;
+  padding: 10px 18px;
+  border-radius: 25px;
+  border: 1px solid #133e86;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9em;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+
+.dan-btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(19,62,134,0.2);
+}
+
+
+
+
+.dan-title-card{
+  background: rgba(255,255,255,0.85);
+  border-radius: 30px;
+  padding: 26px 30px;
+  margin-bottom: 22px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+}
+
+
+.dan-title-card h1{
+  font-size: 3rem;
+  line-height: 1.1;
+}
+
+
+.dan-subtitle{
+  margin: 10px 0 0;
+  opacity: 0.85;
+  font-size: 0.98rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+.dan-card{
+  background: rgba(255,255,255,0.85);
+  border-radius: 25px;
+  padding: 28px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+}
+
+
+.dan-card-header{
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed rgba(19,62,134,0.2);
+}
+
+
+.dan-card-header h2{
+  font-size: 1.8em;
+}
+
+
+.dan-table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.dan-table th{
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 10px;
+  border-bottom: 2px solid #133e86;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+
+.dan-table td{
+  padding: 16px 10px;
+  border-bottom: 1px solid rgba(19,62,134,0.1);
+  font-size: 0.95rem;
+  vertical-align: top;
+}
+
+
+
+.dan-recipe-link{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  color: #133e86;
+}
+
+
+.dan-thumbnail{
+  width: 65px;
+  height: 65px;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+.dan-recipe-name{
+  font-weight: 700;
+}
+
+
+.dan-small-text{
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+
+
+.dan-list{
+  margin: 0;
+  padding-left: 18px;
+}
+
+
+.dan-muted{
+  opacity: 0.8;
+}
+
+
+
+.dan-link{
+  color: #133e86;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+
+.dan-link:hover{
+  opacity: 0.8;
+}
+
+
+.dan-text-danger{
+  color: #dc2626;
+  font-family: 'Playfair Display', serif;
+  text-decoration: none;
+}
+
+
+@media (max-width: 850px){
+  .dan-table{
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+		
+		html, body {
+			cursor: url("media/anchor-cursor.png") 16 16, auto;
+		}
+</style>
+</head>
+<body>
+
+
+  <div class="dan-container">
+
+
+    <!-- Header pill (same style) -->
+    <header class="dan-header-bar">
+      <div class="dan-header-left">
+        <div class="dan-welcome-text">
+          <h3>Welcome back, <span>Reem</span></h3>
+        </div>
+      </div>
+
+
+      <div class="dan-header-actions">
+        <a href="AddNewRecipe.html" class="dan-btn">Add New Recipe</a>
+        <a href="index.html" class="dan-btn">Sign Out</a>
+      </div>
+    </header>
+
+
+    <!-- Page Title card (fills the page like her style) -->
+    <section class="dan-title-card">
+      <h1>My Recipes</h1>
+      <p class="dan-subtitle">All recipes you added in one place.</p>
+    </section>
+
+
+    <!-- Table Card -->
+    <div class="dan-card">
+      <div class="dan-card-header">
+        <h2>My Recipes Table</h2>
+      </div>
+
+
+      <table class="dan-table">
+        <thead>
+          <tr>
+            <th>Recipe</th>
+            <th>Ingredients</th>
+            <th>Instructions</th>
+            <th>Video</th>
+            <th>Likes</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+
+
+        <tbody>
+          <tr>
+            <!-- Recipe name + photo link -->
+            <td>
+              <a href="GrilledSalmonPage.html" class="dan-recipe-link">
+                <img src="media/grilled-salmon.jpg" class="dan-thumbnail" alt="Grilled Salmon">
+                <div>
+                  <div class="dan-recipe-name">Grilled Salmon</div>
+                  <div class="dan-small-text">Tap to view</div>
+                </div>
+              </a>
+            </td>
+
+
+            <!-- Ingredients list -->
+            <td>
+              <ul class="dan-list">
+                <li>2 salmon fillets</li>
+                <li>2 tablespoons olive oil</li>
+                <li> 2 tablespoons butter</li>
+                <li>1 tablespoon lemon juice</li>
+                <li>1 teaspoon salt</li>
+                <li> 1 teaspoon black pepper</li>
+                <li>1 teaspoon paprika</li>
+                <li> Fresh parsley</li>
+                <li> Lemon slices </li>
+
+
+              </ul>
+            </td>
+
+
+            <!-- Instructions list -->
+            <td>
+              <ol class="dan-list">
+                <li>Season the salmon fillets with salt, pepper, and paprika</li>
+                <li>Heat olive oil in a grill pan over medium heat.</li>
+                <li>Grill the salmon for 4–5 minutes on each side until cooked.</li>
+                <li>In a small pan, melt butter and sauté garlic for one minute.</li>
+                <li>Add lemon juice and stir well.</li>
+                <li>Pour the lemon butter sauce over the grilled salmon.</li>
+                <li> Garnish with parsley and serve with lemon slices.</li>
+              </ol>
+            </td>
+
+
+            <!-- Video optional -->
+            <td class="dan-muted">No video for recipe</td>
+
+
+            <td><strong>430</strong></td>
+
+
+            <td><a href="EditGrilledSalmon.html" class="dan-link">Edit</a></td>
+
+
+           
+            <td><a href="MyRecipesPage.html" class="dan-text-danger">Delete</a></td>
+          </tr>
+
+
+          <tr>
+            <td>
+              <a href="SayadiahPage.html" class="dan-recipe-link">
+                <img src="media/sayadiyah-fish.jpg" class="dan-thumbnail" alt="Grilled Fish">
+                <div>
+                  <div class="dan-recipe-name">Sayadiyah Fish</div>
+                  <div class="dan-small-text">Tap to view</div>
+                </div>
+              </a>
+            </td>
+
+
+            <td>
+              <ul class="dan-list">
+                <li>1 whole fish (hamour or sea bass) – 1 kg</li>
+                <li>2 cups basmati rice</li>
+                <li>1 large onion (sliced)</li>
+                <li>2 tomatoes (chopped)</li>
+                <li>3 tablespoons cooking oil</li>
+                <li>1 teaspoon turmeric</li>
+                <li>1 teaspoon cumin</li>
+                <li>1 teaspoon coriander</li>
+                <li>1 teaspoon black pepper</li>
+                <li>1 teaspoon salt</li>
+                <li>3 cups water</li>
+                <li> Lemon slices (for serving)</li>
+              </ul>
+            </td>
+
+
+            <td>
+              <ol class="dan-list">
+                <li>Clean and season the fish with salt and spices.</li>
+                <li>Fry the fish in oil until golden brown, then set aside.</li>
+                <li>Sauté onion and garlic until soft.</li>
+                <li>Add tomatoes and spices, then cook for a few minutes.</li>
+                <li>Add rice and water, then simmer until the rice is cooked.</li>
+                <li>Serve the fish on top of the rice and garnish with lemon slices</li>
+              </ol>
+            </td>
+
+
+            <td><a href="https://www.youtube.com/watch?v=ZmABQvOU85w" target="_blank" class="dan-link">Watch</a></td>
+
+
+            <td><strong>215</strong></td>
+
+
+            <td><a href="EditSayadiyahFish.html" class="dan-link">Edit</a></td>
+
+
+            <td><a href="MyRecipesPage.html" class="dan-text-danger">Delete</a></td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+
+
+</body>
+</html>
+

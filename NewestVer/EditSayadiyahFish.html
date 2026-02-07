@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeaSaudi | Edit Sayadiyah Fish</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #cadbea;
+      --text: #133e86;
+      --glass: rgba(255,255,255,0.85);
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      position: relative;
+      cursor: url("media/anchor-cursor.png") 16 16, auto;
+    }
+
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      background-image: url("media/BackgroundImg.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+      z-index: -1;
+    }
+
+    /* Headings matched to Playfair Display */
+    h1, h2, h3, h4{
+      font-family: "Playfair Display", serif;
+      color: var(--text);
+      margin: 0;
+      font-weight: 400;
+    }
+
+    /* Layout Containers */
+    .Alanoud-container{
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .Alanoud-header-bar{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      background: var(--glass);
+      padding: 15px 30px;
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .Alanoud-welcome-text h3{
+      margin: 0;
+      font-weight: 400;
+      font-size: 1.05rem;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .Alanoud-welcome-text span{
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Primary Button Style */
+    .Alanoud-update-btn{
+      background-color: rgba(19, 62, 134, 0.05);
+      color: #133e86;
+      padding: 10px 25px;
+      border-radius: 25px;
+      border: 1px solid #133e86;
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .Alanoud-update-btn:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(19,62,134,0.18);
+    }
+
+    /* Card Styling */
+    .Alanoud-card{
+      background: var(--glass);
+      border-radius: 25px;
+      padding: 30px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+    }
+
+    .Alanoud-card-header{
+      margin-bottom: 18px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed rgba(19,62,134,0.20);
+      text-align: center;
+    }
+
+    .Alanoud-card-header h2{
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    /* Form and Rows */
+    .Alanoud-form{
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .Alanoud-form label strong{
+      font-size: 1.15rem;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .Alanoud-inline-row{
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .Alanoud-inline-row label{
+      min-width: 110px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+    }
+
+    input[type="text"],
+    input[type="url"],
+    textarea,
+    select{
+      border: 1px solid rgba(19,62,134,0.35);
+      border-radius: 14px;
+      padding: 10px 12px;
+      outline: none;
+      background: rgba(255,255,255,0.75);
+      color: var(--text);
+      font-family: "Poppins", sans-serif;
+      width: 100%;
+      min-width: 220px;
+    }
+
+    textarea{
+      min-height: 110px;
+      resize: vertical;
+      width: 100%;
+    }
+
+    /* Media Sections */
+    .Alanoud-media-flex{
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .Alanoud-media-placeholder{
+      border: 1px solid rgba(19,62,134,0.35);
+      width: 130px;
+      height: 70px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      margin-top: 8px;
+      background: rgba(255,255,255,0.75);
+      overflow: hidden;
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+    }
+
+    /* Dynamic Spacing for Ingredients/Steps */
+    .Alanoud-dynamic-row{
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .Alanoud-dynamic-row label{
+      min-width: 110px;
+      font-weight: 400;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .Alanoud-input-name{ flex: 2; }
+    .Alanoud-input-qty{ flex: 1; }
+
+    .Alanoud-submit-area{
+      margin-top: 6px;
+      display: flex;
+      justify-content: center;
+    }
+
+    @media (max-width: 850px){
+      .Alanoud-inline-row{ grid-template-columns: 1fr; align-items: start; }
+      .Alanoud-dynamic-row{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="Alanoud-container">
+
+    <header class="Alanoud-header-bar">
+      <div class="Alanoud-welcome-text">
+        <h3>Edit Recipe in <span>SeaSaudi</span></h3>
+      </div>
+      <a href="My recipes page.html" class="Alanoud-update-btn">Back to My Recipes</a>
+    </header>
+
+    <section class="Alanoud-card">
+      <div class="Alanoud-card-header">
+        <h2>Edit Recipe</h2>
+      </div>
+
+      <form action="my_recipes.html" method="GET" class="Alanoud-form">
+
+        <div class="Alanoud-inline-row">
+          <label>Name:</label>
+          <input type="text" name="recipeName" value="Sayadiyah Fish" required>
+        </div>
+
+        <div class="Alanoud-inline-row">
+          <label>Category:</label>
+          <select name="category" style="width: 200px;">
+            <option value="redSea" selected>Red Sea</option>
+            <option value="ArabianGulf">Arabian Gulf</option>
+            <option value="international">International</option>
+          </select>
+        </div>
+
+        <div class="Alanoud-form-group">
+          <label><strong>Description:</strong></label><br>
+          <textarea name="description">Sayadiyah is a traditional Saudi seafood dish made with fresh fish and spiced rice. It is popular in coastal cities along the Red Sea and reflects the rich maritime heritage of Saudi Arabia.</textarea>
+        </div>
+
+        <div class="Alanoud-media-flex">
+          <div>
+            <label><strong>Upload Recipe Photo:</strong></label><br><br>
+            <input type="file" name="recipePhoto" accept="image/*">
+          </div>
+          <div style="text-align: center;">
+            <label>Current Photo:</label>
+            <div class="Alanoud-media-placeholder">
+              <img src="Sayadiyah-Fish.jpg" alt="Sayadiyah Fish" style="width: 110px; height: 70px; border-radius: 10px; object-fit: cover; border: 1px solid #777;">
+            </div>
+          </div>
+        </div>
+
+        <div class="Alanoud-form-group">
+          <label><strong>Ingredients:</strong></label>
+          <div class="Alanoud-dynamic-row">
+            <label>Ingredient 1:</label>
+            <div style="display:flex; gap:10px; width:100%;">
+              Name: <input type="text" name="ingName1" value="Whole fish (hamour or sea bass)" class="Alanoud-input-name">
+              Qty: <input type="text" name="ingQty1" value="1 kg" class="Alanoud-input-qty">
+            </div>
+          </div>
+          <div class="Alanoud-dynamic-row">
+            <label>Ingredient 2:</label>
+            <div style="display:flex; gap:10px; width:100%;">
+              Name: <input type="text" name="ingName2" value="Basmati rice" class="Alanoud-input-name">
+              Qty: <input type="text" name="ingQty2" value="2 cups" class="Alanoud-input-qty">
+            </div>
+          </div>
+          <div class="Alanoud-dynamic-row">
+            <label>Ingredient 3:</label>
+            <div style="display:flex; gap:10px; width:100%;">
+              Name: <input type="text" name="ingName3" value="Onion, Tomato, Garlic" class="Alanoud-input-name">
+              Qty: <input type="text" name="ingQty3" value="As per recipe" class="Alanoud-input-qty">
+            </div>
+          </div>
+        </div>
+
+        <div class="Alanoud-form-group">
+          <label><strong>Instructions:</strong></label>
+          <div class="Alanoud-dynamic-row">
+            <label>Step 1:</label>
+            <input type="text" name="step1" value="Clean and season the fish with salt and spices.">
+          </div>
+          <div class="Alanoud-dynamic-row">
+            <label>Step 2:</label>
+            <input type="text" name="step2" value="Fry fish until golden brown, then set aside.">
+          </div>
+          <div class="Alanoud-dynamic-row">
+            <label>Step 3:</label>
+            <input type="text" name="step3" value="Sauté onion and garlic, add tomatoes and spices.">
+          </div>
+        </div>
+
+        <div class="Alanoud-media-flex">
+          <div>
+            <label><strong>Upload Video or URL:</strong></label><br><br>
+            <input type="file" name="videoFile" accept="video/*">
+          </div>
+          <div style="text-align: center;">
+            <label>Current Video:</label>
+            <div class="Alanoud-media-placeholder">
+               <iframe width="130" height="70" src="https://www.youtube.com/embed/ZmABQvOU85w" frameborder="0" style="border-radius: 8px;"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="Alanoud-inline-row">
+          <label>Video URL:</label>
+          <input type="url" name="videoUrl" value="https://www.youtube.com/watch?v=ZmABQvOU85w">
+        </div>
+
+        <div class="Alanoud-submit-area">
+          <button type="submit" class="Alanoud-update-btn" style="font-size: 1.2rem; padding: 15px 50px;">Update Recipe</button>
+        </div>
+
+      </form>
+    </section>
+  </div>
+</body>
+
+</html>
